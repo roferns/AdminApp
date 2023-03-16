@@ -1,0 +1,45 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.AdminApp" parent="Theme.Material3.DayNight">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="info_title">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/inter</item>
+        <item name="maxLines">1</item>
+    </style>
+
+    <style name="info_title.Bold">
+        <item name="textAllCaps">true</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/inter_bold</item>
+    </style>
+
+    <style name="welcome">
+        <item name="fontFamily">@font/inter</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="button">
+        <item name="fontFamily">@font/inter_bold</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <!--        <item name="colorAccent">@color/accent</item>-->
+        <!--        <item name="colorOnPrimary">@color/white</item>-->
+        <!--        <item name="android:textColor">@color/black</item>-->
+        <!--        <item name="theme">@style/button</item>-->
+    </style>
+
+</resources>

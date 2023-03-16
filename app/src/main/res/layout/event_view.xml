@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <TextView
+        android:id="@+id/eventView_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Event Name"/>
+
+    <TextView
+        android:id="@+id/deptView_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/eventView_tv"
+        android:text="Department" />
+
+    <TextView
+        android:id="@+id/facultyView_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/deptView_tv"
+        android:text="Faculty" />
+
+    <TextView
+        android:id="@+id/dateView_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/facultyView_tv"
+        android:text="Date" />
+
+    <TextView
+        android:id="@+id/timeView_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dateView_tv"
+        android:text="Time" />
+
+    <TextView
+        android:id="@+id/pointsView_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeView_tv"
+        android:text="Points" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/pointsView_tv"
+        android:layout_marginTop="10dp"
+        android:background="#DAD8D8"/>
+
+
+</RelativeLayout>
