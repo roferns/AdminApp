@@ -1,8 +1,10 @@
 package com.example.adminapp;
 
 public class Event {
+    String id;
     String eventName;
     String department;
+    String venue;
     String faculty;
     String points;
     String date;
@@ -12,15 +14,24 @@ public class Event {
 
     }
 
-    public Event(String eventName, String department, String faculty, String points, String date, String time) {
+    public Event(String id, String eventName, String department, String venue, String faculty, String points, String date, String time) {
+        this.id = id;
         this.eventName = eventName;
         this.department = department;
+        this.venue= venue;
         this.faculty = faculty;
         this.points = points;
         this.date = date;
         this.time = time;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getEventName() {
         return eventName;
@@ -44,6 +55,12 @@ public class Event {
 
     public void setFaculty(String faculty) {
         this.faculty = faculty;
+    }
+
+    public String getVenue() { return venue; }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
 
     public String getPoints() {

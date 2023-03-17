@@ -29,7 +29,7 @@ public class CreateForm extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
 
-    EditText eventName, department, faculty, pointsAlloted, date_, time;
+    EditText eventName, department, faculty, venue, pointsAlloted, date_, time;
     Button submit, reset;
     DatabaseReference myRef;
     FirebaseDatabase database;
@@ -42,6 +42,7 @@ public class CreateForm extends AppCompatActivity {
         eventName = findViewById(R.id.eventName_et);
         department = findViewById(R.id.dept_et);
         faculty = findViewById(R.id.faculty_et);
+        venue=findViewById(R.id.venue_et);
         pointsAlloted = findViewById(R.id.pointsAllotted_et);
         submit = findViewById(R.id.submit_btn);
         reset = findViewById(R.id.reset_btn);
@@ -89,11 +90,13 @@ public class CreateForm extends AppCompatActivity {
     public void insertData(){
 
         HashMap<String, Object> insert = new HashMap<>();
+        insert.put("archived",0);
         insert.put("name", eventName.getText().toString());
         insert.put("date", date_.getText().toString());
         insert.put("time", time.getText().toString());
         insert.put("department", department.getText().toString());
         insert.put("faculty", faculty.getText().toString());
+        insert.put("venue",venue.getText().toString());
         insert.put("points", pointsAlloted.getText().toString());
 
         database = FirebaseDatabase.getInstance("https://eccloginmoduletest-default-rtdb.asia-southeast1.firebasedatabase.app/");
