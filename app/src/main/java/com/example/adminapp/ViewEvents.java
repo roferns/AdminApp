@@ -24,18 +24,41 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class ViewEvents extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class ViewEvents extends BaseActivity implements AdapterView.OnItemSelectedListener {
 
     DatabaseReference myRef;
     FirebaseDatabase database;
     List<Event> events = new ArrayList<Event>();
     RecyclerView recyclerView;
+    MyAdapter2 adapterForUpdate;
 
-    int spinnerValue=100;
+    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+    SimpleDateFormat todayFormatter = new SimpleDateFormat("yyyy-MM-dd");
+    Date todayDate;
+    int dateComparisonFlag=0;
+
+    {
+        try {
+            Log.d("datew", "instance initializer: "+LocalDate.now());
+            todayDate = todayFormatter.parse(String.valueOf(LocalDate.now()));
+            Log.d("datew", "instance initializer2: "+todayDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    int spinnerValue=101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +69,7 @@ public class ViewEvents extends AppCompatActivity implements AdapterView.OnItemS
 
         Spinner dropdown = findViewById(R.id.spinner2);
         //String[] ViewString = new String[]{"Archived Events", "Today's Events", "Future Events"};
-        String[] events2 = new String[]{"All Events"};
+        String[] events2 = new String[]{"Today's events","Past Events","Future Events"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, events2);
         dropdown.setAdapter(adapter);
         dropdown.setOnItemSelectedListener(this);
@@ -56,56 +79,140 @@ public class ViewEvents extends AppCompatActivity implements AdapterView.OnItemS
 
     }
 
-        public void updateRecycler2() {
+    public void updateRecycler2() {
 
-            //this is used to read db once
-            myRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DataSnapshot> task) {
-                    if (!task.isSuccessful()) {
-                        Log.e("firebase", "Error getting data", task.getException());
-                    }
-                    //if sucessful then,
-                    else {
-                        HashMap value = (HashMap) task.getResult().getValue();
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                HashMap value = (HashMap) dataSnapshot.getValue();
+                if (value==null){
+                    Toast.makeText(ViewEvents.this, "There are no events!", Toast.LENGTH_SHORT).show();
+                }else{
 
-                        events.clear();  //clearing the array, basically the screen first using this
-                        for (Object i : value.keySet()) {
-                            events.add(new Event(((HashMap) value.get(i)).get("name") + "",
-                                    ((HashMap) value.get(i)).get("department") + "",
-                                    ((HashMap) value.get(i)).get("faculty") + "",
-                                    ((HashMap) value.get(i)).get("points") + "",
-                                    ((HashMap) value.get(i)).get("date")+"",
-                                    ((HashMap) value.get(i)).get("time") + ""));
-
+                    events.clear();  //clearing the array, basically the screen first using this
+                    for (Object i : value.keySet()) {
+//                            events.add(new Event(((HashMap) value.get(i)).get("name") + "",
+//                                    ((HashMap) value.get(i)).get("department") + "",
+//                                    ((HashMap) value.get(i)).get("faculty") + "",
+//                                    ((HashMap) value.get(i)).get("points") + "",
+//                                    ((HashMap) value.get(i)).get("date")+"",
+//                                    ((HashMap) value.get(i)).get("time") + ""));
+                        Log.d("indexx", "onComplete: "+i);
+                        Date date = null;
+                        try {
+                            date = formatter.parse(((HashMap) value.get(i)).get("date")+"");
+                        } catch (ParseException e) {
+                            e.printStackTrace();
                         }
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                        recyclerView.setAdapter(new MyAdapter2(getApplicationContext(), events));
+                        Log.d("datee", "onComplete: "+LocalDate.now());
+
+
+                        try {
+                            dateComparisonFlag=date.compareTo(todayDate);
+
+                            if(dateComparisonFlag > 0)
+                            {
+                                if (spinnerValue==102){
+                                    events.add(new Event(i + "",
+                                            ((HashMap) value.get(i)).get("name") + "",
+                                            ((HashMap) value.get(i)).get("department") + "",
+                                            ((HashMap) value.get(i)).get("venue") + "",
+                                            ((HashMap) value.get(i)).get("faculty") + "",
+                                            ((HashMap) value.get(i)).get("points") + "",
+                                            ((HashMap) value.get(i)).get("date")+"",
+                                            ((HashMap) value.get(i)).get("time") + ""));
+                                }
+                                Log.d("cccomp", date+" is future");
+                            }
+                            else if(dateComparisonFlag < 0)
+                            {
+                                if (spinnerValue==101){
+                                    events.add(new Event(i + "",
+                                            ((HashMap) value.get(i)).get("name") + "",
+                                            ((HashMap) value.get(i)).get("department") + "",
+                                            ((HashMap) value.get(i)).get("venue") + "",
+                                            ((HashMap) value.get(i)).get("faculty") + "",
+                                            ((HashMap) value.get(i)).get("points") + "",
+                                            ((HashMap) value.get(i)).get("date")+"",
+                                            ((HashMap) value.get(i)).get("time") + ""));
+                                }
+                                Log.d("cccomp", date+" is past ");
+                            }
+                            else if(dateComparisonFlag == 0)
+                            {
+                                if (spinnerValue==100){
+                                    events.add(new Event(i + "",
+                                            ((HashMap) value.get(i)).get("name") + "",
+                                            ((HashMap) value.get(i)).get("department") + "",
+                                            ((HashMap) value.get(i)).get("venue") + "",
+                                            ((HashMap) value.get(i)).get("faculty") + "",
+                                            ((HashMap) value.get(i)).get("points") + "",
+                                            ((HashMap) value.get(i)).get("date")+"",
+                                            ((HashMap) value.get(i)).get("time") + ""));
+                                }
+                                Log.d("cccomp", date+" is todayy");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+//                            System.out.println("Date object value: "+date);
+
                     }
+
+                    sort(events);
+
+//                        adapterForUpdate=new MyAdapter2(getApplicationContext(),events);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                    recyclerView.setAdapter(new MyAdapter2(getApplicationContext(), events));
+//                        recyclerView.setAdapter(adapterForUpdate); //testing for update
+
                 }
-            });
-        }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("TAG", "Failed to read value.", error.toException());
+            }
+        });
+
+    }
+
+
+
+    public void sort(List<Event> events) {
+
+        events.sort(Comparator.comparing(o -> {
+            try {
+                return formatter.parse(o.getDate());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }));
+    }
 
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-            String choice=adapterView.getItemAtPosition(i).toString();
-            if (choice=="All Events"){
-                spinnerValue=100;
-            }
-//                spinnerValue=100;
-//            if (choice=="Archived Events"){
-//                spinnerValue=100;
-//            }else if(choice=="Today's Events"){
-//                spinnerValue=101;
-//            }else if(choice=="Future Events"){
-//                spinnerValue=102;
-//            }
-            updateRecycler2();
+        String choice=adapterView.getItemAtPosition(i).toString();
+        if (choice=="Today's events"){
+            spinnerValue=100;
+        }else if (choice=="Past Events"){
+            spinnerValue=101;
+        }else if(choice=="Future Events"){
+            spinnerValue=102;
+        }
+        updateRecycler2();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
 }

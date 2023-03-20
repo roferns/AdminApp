@@ -19,6 +19,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:elevation="60dp"
         app:iconPadding="4dp"
+        style="@style/login"
+        app:elevation="4dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

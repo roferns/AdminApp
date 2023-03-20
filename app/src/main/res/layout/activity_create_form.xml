@@ -7,20 +7,11 @@
     android:padding="16dp"
     tools:context=".CreateForm">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="32dp">
-
-
-    </ScrollView>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/round_corner"
+        android:background="@drawable/cardbg"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +19,7 @@
 
         <TextView
             android:id="@+id/textView"
+            style="@style/info_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -39,6 +31,7 @@
             android:id="@+id/event_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_marginTop="32dp"
             android:hint="Event Name"
             app:layout_constraintEnd_toEndOf="@+id/dept_tv"
@@ -59,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Department"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             app:layout_constraintEnd_toEndOf="@+id/faculty_tv"
             app:layout_constraintTop_toBottomOf="@+id/event_tv">
 
@@ -77,6 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Faculty Incharge"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@+id/dept_tv">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -89,28 +84,49 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/date_tv"
+            android:id="@+id/venue_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date"
+            android:hint="Venue"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@+id/faculty_tv">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/datePickerButton"
+                android:id="@+id/venue_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:drawableEnd="@drawable/drop_down_arrow"
                 android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/date_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@+id/venue_tv">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/datePickerButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            style="@style/drawable"
+            android:drawableEnd="@drawable/baseline_calendar_today_24"
+            android:inputType="none|date"
+            android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/time_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Time"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@+id/date_tv"
             >
 
@@ -119,67 +135,63 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:drawableEnd="@drawable/baseline_access_time_24"
                 android:text="00:00"
-                android:drawableEnd="@drawable/drop_down_arrow"
-                android:textColor="#000000"
+                style="@style/drawable"
+                android:inputType="none|time"
                 android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/points_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Number of ECC Points"
-            app:layout_constraintTop_toBottomOf="@+id/time_tv"
-            tools:layout_editor_absoluteX="34dp">
+            android:hint="ECC Points"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@+id/time_tv">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pointsAllotted_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                android:inputType="number"
                 android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/reset_btn"
-            style="@style/button"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="reset"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/submit_btn"
-            app:layout_constraintTop_toBottomOf="@+id/points_tv" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="bottom">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/submit_btn"
             style="@style/button"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="submit"
-            app:layout_constraintEnd_toStartOf="@+id/reset_btn"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/points_tv" />
+            android:layout_margin="4dp"
+            android:layout_weight="0.5"
+            android:text="SUBMIT"
+            />
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group"
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/reset_btn"
+            style="@style/button.danger"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="submit_btn,reset_btn"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="16dp" />
+            android:layout_margin="4dp"
+            android:layout_weight="0.5"
+            android:text="RESET"
+            />
+
+        </LinearLayout>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-

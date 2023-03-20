@@ -9,32 +9,35 @@
         android:icon="@mipmap/ic_launcher"
         android:label="ADMIN"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Material3.Light">
+        android:supportsRtl="true">
         <activity
-            android:name=".MyAdapter"
-            android:exported="false" />
+            android:name=".BaseActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AdminApp" />
         <activity
             android:name=".ClasswiseView"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AdminApp" />
         <activity
             android:name=".ViewEvents"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AdminApp" />
         <activity
             android:name=".CreateForm"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AdminApp" />
         <activity
             android:name=".Home"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AdminApp" />
         <activity
             android:name=".ResultPage"
-            android:exported="false" />
-        <activity
-            android:name=".Volunteer"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AdminApp" />
         <activity
             android:name=".Login"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

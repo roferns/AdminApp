@@ -1,58 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:padding="16dp"
+    android:theme="@style/Theme.AdminApp">
 
-
-    <TextView
-        android:id="@+id/eventView_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Event Name"/>
-
-    <TextView
-        android:id="@+id/deptView_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/eventView_tv"
-        android:text="Department" />
-
-    <TextView
-        android:id="@+id/facultyView_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/deptView_tv"
-        android:text="Faculty" />
-
-    <TextView
-        android:id="@+id/dateView_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/facultyView_tv"
-        android:text="Date" />
-
-    <TextView
-        android:id="@+id/timeView_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dateView_tv"
-        android:text="Time" />
-
-    <TextView
-        android:id="@+id/pointsView_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/timeView_tv"
-        android:text="Points" />
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/pointsView_tv"
-        android:layout_marginTop="10dp"
-        android:background="#DAD8D8"/>
+        android:layout_height="wrap_content"
+        android:background="@drawable/cardbg"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cl1">
+
+            <LinearLayout
+                android:id="@+id/cl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintDimensionRatio="w,0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button2"
+                    style="@style/button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="0.5" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/deleteBtn"
+                    style="@style/button.danger"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="0.5"
+                    android:text="Delete" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/nameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/inter"
+                android:textAllCaps="true"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/pointsTV"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Event Name" />
+
+            <TextView
+                android:id="@+id/venueNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/deptNameTV"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/inter"
+                app:layout_constraintEnd_toEndOf="@+id/deptNameTV"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deptNameTV"
+                tools:text="Venue Name" />
+
+            <TextView
+                android:id="@+id/deptNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter"
+                app:layout_constraintEnd_toStartOf="@+id/pointsTV"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameTV"
+                tools:text="Department Name" />
+
+            <TextView
+                android:id="@+id/facultyNameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/venueNameTV"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/inter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/venueNameTV"
+                tools:text="Faculty" />
 
 
-</RelativeLayout>
+            <LinearLayout
+                android:id="@+id/ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/facultyNameTV">
+
+                <TextView
+                    android:id="@+id/dateTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/inter"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    app:layout_constraintEnd_toStartOf="@+id/timeTV"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/facultyNameTV"
+                    tools:text="Event Date" />
+
+                <TextView
+                    android:id="@+id/timeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/inter"
+                    android:textAlignment="viewEnd"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/dateTV"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/dateTV"
+                    app:layout_constraintTop_toTopOf="@+id/dateTV"
+                    tools:text="Event Time" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/pointsTV"
+                android:layout_width="85dp"
+                android:layout_height="81dp"
+                android:fontFamily="@font/inter"
+                android:text="2"
+                android:gravity="top|right"
+                android:textAlignment="gravity"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="60sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+

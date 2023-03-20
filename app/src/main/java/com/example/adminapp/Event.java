@@ -1,18 +1,23 @@
 package com.example.adminapp;
 
 public class Event {
+    String id;
     String eventName;
     String department;
     String faculty;
+    String venue;
     String points;
     String date;
     String time;
+
+    boolean expanded;
 
     public Event() {
 
     }
 
-    public Event(String eventName, String department, String faculty, String points, String date, String time) {
+    public Event(String id, String eventName, String department, String venue, String faculty, String points, String date, String time) {
+        this.id = id;
         this.eventName = eventName;
         this.department = department;
         this.faculty = faculty;
@@ -21,6 +26,13 @@ public class Event {
         this.time = time;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getEventName() {
         return eventName;
@@ -46,6 +58,11 @@ public class Event {
         this.faculty = faculty;
     }
 
+
+    public String getVenue() { return venue; }
+
+    public void setVenue(String venue) { this.venue = venue; }
+
     public String getPoints() {
         return points;
     }
@@ -68,6 +85,14 @@ public class Event {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
+    }
+
+    public boolean isExpanded() {
+        return expanded;
     }
 }
 

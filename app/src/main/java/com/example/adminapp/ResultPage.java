@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class ResultPage extends AppCompatActivity {
+public class ResultPage extends BaseActivity {
 
     TextView searchResultDisplay, nameTV, emailTV, classTV;
 
@@ -56,10 +56,10 @@ public class ResultPage extends AppCompatActivity {
                 .build();
         gsc= GoogleSignIn.getClient(this,gso);
         GoogleSignInAccount account=GoogleSignIn.getLastSignedInAccount(this); //here we save the data of user(admin)
-                                                                                        // for future use if required
+        // for future use if required
 
         database = FirebaseDatabase.getInstance("https://eccloginmoduletest-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        myRef = database.getReference().child("users");
+        myRef = database.getReference("users");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -74,11 +74,8 @@ public class ResultPage extends AppCompatActivity {
 
                     nameTV.setText((String) searchResult.get("name"));
                     emailTV.setText((String) searchResult.get("email"));
-                    classTV.setText((String) searchResult.get("class"));
+                    //classTV.setText((String) searchResult.get("class"));
 
-//                    String searchMsg="Name: "+searchResult.get("name")+"\n"
-//                                    +"email: "+searchResult.get("email")+"\n"
-//                                    +"class: "+searchResult.get("class");
                     String searchMsg = "";
                     if (Integer.parseInt(searchResult.get("volunteer")+"")==1){
                         searchMsg = searchMsg + "\nThis student is a volunteer";
