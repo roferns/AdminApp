@@ -49,6 +49,14 @@
         <item name="cornerRadius">10dp</item>
     </style>
 
+    <style name="drawable">
+        <item name="drawableTint">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="drawable.dropdwon">
+        <item name="android:drawableEnd">@drawable/drop_down_arrow</item>
+    </style>
+
 
 
 </resources>

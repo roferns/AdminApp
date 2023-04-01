@@ -18,8 +18,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -48,15 +51,28 @@ public class CreateForm extends BaseActivity {
         reset = findViewById(R.id.reset_btn);
         time = findViewById(R.id.timePickerButton);
 
+
         //date picker
         initDatePicker();
         date_ = findViewById(R.id.datePickerButton);
         date_.setText(getTodaysDate());
 
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 insertData();
+
+//                event.setEventName(eventName.getText().toString().trim());
+//                event.setDepartment(department.getText().toString().trim());
+//                event.setFaculty(faculty.getText().toString().trim());
+//                event.setVenue(venue.getText().toString().trim());
+//                event.setDate(date_.getText().toString().trim());
+//                event.setTime(time.getText().toString().trim());
+//                event.setPoints(pointsAlloted.getText().toString().trim());
+//                myRef.child(String.valueOf(maxid+1)).setValue("events");
+//
+//                Toast.makeText(CreateForm.this, "Data inserted successfully", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -70,7 +86,7 @@ public class CreateForm extends BaseActivity {
                 pointsAlloted.getText().clear();
                 date_.setText(getTodaysDate());
                 venue.getText().clear();
-            }
+                }
         });
 
         date_.setOnClickListener(new View.OnClickListener() {
@@ -167,9 +183,8 @@ public class CreateForm extends BaseActivity {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
 
-
                 //Showing the picked value in the textView
-                time.setText(String.valueOf(hour)+ ":"+String.valueOf(minute));
+                time.setText(String.valueOf(hour)+ ":" +String.valueOf(minute));
 
             }
         }, 15, 30, false);

@@ -1,5 +1,6 @@
 package com.example.adminapp;
 
+import android.media.Image;
 import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +14,10 @@ import java.util.List;
 
 public class MyViewHolder2 extends RecyclerView.ViewHolder{
     TextView name, department, venue, faculty, date, time, points;
-    Button deleteBtn;
-    View cl;
+    Button deleteBtn, editBtn;
+    View cl, cl2;
+
+    ImageView arrow;
 
     List<Event> events;
 
@@ -28,6 +31,8 @@ public class MyViewHolder2 extends RecyclerView.ViewHolder{
         time = itemView.findViewById(R.id.timeTV);
         points = itemView.findViewById(R.id.pointsTV);
         deleteBtn=itemView.findViewById(R.id.deleteBtn);
+        editBtn = itemView.findViewById(R.id.editBtn);
         cl = itemView.findViewById(R.id.cl);
+        arrow = itemView.findViewById(R.id.imgbtn);
     }
 }

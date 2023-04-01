@@ -57,25 +57,47 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyViewHolder2>{
             database = FirebaseDatabase.getInstance("https://eccloginmoduletest-default-rtdb.asia-southeast1.firebasedatabase.app/");
             myRef = database.getReference("events");
             myRef.child(events.get(position).getId()).removeValue();
+        });
+//        holder.editBtn.setOnClickListener(view -> {
+//            Log.d("indexx", events.get(position).getId()+"");
+//            database = FirebaseDatabase.getInstance("https://eccloginmoduletest-default-rtdb.asia-southeast1.firebasedatabase.app/");
+//            myRef = database.getReference("events").child(events.get(position).getId());
+//        });
 
+        int pos = holder.getBindingAdapterPosition();
+
+        holder.editBtn.setOnClickListener(view -> {
+            Log.d("index1", events.get(position).getId()+"");
+            database = FirebaseDatabase.getInstance("https://eccloginmoduletest-default-rtdb.asia-southeast1.firebasedatabase.app/");
+            myRef = database.getReference("events");
+            myRef.child(events.get(position).getId());
+            Intent i = new Intent(context, EditEvent.class);
+            i.putExtra("name", events.get(pos).getEventName());
+            i.putExtra("department", events.get(pos).getDepartment());
+            i.putExtra("venue", events.get(pos).getVenue());
+            i.putExtra("faculty", events.get(pos).getFaculty());
+            i.putExtra("points", events.get(pos).getPoints());
+            i.putExtra("date", events.get(pos).getDate());
+            i.putExtra("time", events.get(pos).getTime());
+            i.putExtra("key", events.get(pos).getId());
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(i);
         });
 
-        holder.name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int pos = holder.getBindingAdapterPosition();
-                if(events.get(pos).expanded){
-                    holder.cl.setVisibility(View.GONE);
-                    events.get(pos).expanded = false;
-                }
-                else {
-                    holder.cl.setVisibility(View.VISIBLE);
-                    events.get(pos).expanded = true;
+        holder.arrow.setOnClickListener(view -> {
+            if(events.get(pos).expanded){
+                holder.cl.setVisibility(View.GONE);
+                events.get(pos).expanded = false;
+            }
+            else {
+                holder.cl.setVisibility(View.VISIBLE);
+                events.get(pos).expanded = true;
 
-                }
             }
         });
     }
+
+
 
 
     @Override

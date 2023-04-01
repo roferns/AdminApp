@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/cardbg"
-        android:padding="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -19,7 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginTop="20dp"
+            android:paddingTop="5dp"
+            android:paddingRight="16dp"
+            android:paddingLeft="12dp"
+            android:paddingBottom="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +37,14 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button2"
+                    android:id="@+id/editBtn"
                     style="@style/button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
-                    android:layout_weight="0.5" />
+                    android:layout_weight="0.5"
+                    android:textAllCaps="true"
+                    android:text="Update"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/deleteBtn"
@@ -49,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="4dp"
                     android:layout_weight="0.5"
+                    android:textAllCaps="true"
                     android:text="Delete" />
 
             </LinearLayout>
@@ -61,32 +66,60 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/nameTV"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:fontFamily="@font/inter"
-                android:textAllCaps="true"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/pointsTV"
-                app:layout_constraintHorizontal_bias="0.0"
+                android:background="@drawable/viewcard"
+                android:padding="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Event Name" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/nameTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="start"
+                    android:textAllCaps="true"
+                    android:textColor="?attr/colorOnPrimary"
+                    style="@style/info_title.Bold"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imgbtn"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Event Name" />
+
+                <ImageView
+                    android:id="@+id/imgbtn"
+                    android:layout_width="45dp"
+                    android:layout_height="33dp"
+                    android:paddingLeft="16dp"
+                    android:src="@drawable/drop_down_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:tint="@color/white"
+                    tools:ignore="UseAppTint" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/venueNameTV"
+                android:paddingLeft="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/deptNameTV"
                 android:layout_marginTop="3dp"
-                android:fontFamily="@font/inter"
                 app:layout_constraintEnd_toEndOf="@+id/deptNameTV"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/deptNameTV"
+                style="@style/info_title"
                 tools:text="Venue Name" />
 
             <TextView
@@ -94,32 +127,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/inter"
-                app:layout_constraintEnd_toStartOf="@+id/pointsTV"
-                app:layout_constraintHorizontal_bias="0.0"
+                android:paddingLeft="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameTV"
+                app:layout_constraintTop_toBottomOf="@+id/cl2"
+                style="@style/info_title"
                 tools:text="Department Name" />
 
             <TextView
                 android:id="@+id/facultyNameTV"
+                android:paddingLeft="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/venueNameTV"
                 android:layout_marginTop="3dp"
-                android:fontFamily="@font/inter"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/venueNameTV"
+                style="@style/info_title"
                 tools:text="Faculty" />
 
+
+            <TextView
+                android:id="@+id/pointsTV"
+                android:paddingLeft="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Points"
+                android:layout_marginTop="3dp"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/info_title"
+                app:layout_constraintTop_toBottomOf="@+id/facultyNameTV" />
 
             <LinearLayout
                 android:id="@+id/ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/facultyNameTV">
+                android:layout_marginTop="10dp"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/pointsTV">
 
                 <TextView
                     android:id="@+id/dateTV"
@@ -128,8 +174,8 @@
                     android:layout_marginRight="4dp"
                     android:layout_weight="2"
                     android:fontFamily="@font/inter"
-                    android:textStyle="bold"
                     android:textSize="16dp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/timeTV"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -144,8 +190,8 @@
                     android:layout_weight="2"
                     android:fontFamily="@font/inter"
                     android:textAlignment="viewEnd"
-                    android:textStyle="bold"
                     android:textSize="16dp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/dateTV"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintEnd_toStartOf="parent"
@@ -156,21 +202,8 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/pointsTV"
-                android:layout_width="85dp"
-                android:layout_height="81dp"
-                android:fontFamily="@font/inter"
-                android:text="2"
-                android:gravity="top|right"
-                android:textAlignment="gravity"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="60sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
