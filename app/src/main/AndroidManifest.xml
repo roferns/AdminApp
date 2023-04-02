@@ -5,10 +5,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:windowSoftInputMode="stateVisible|adjustResize"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="ADMIN"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true">
         <activity
             android:name=".EditEvent"

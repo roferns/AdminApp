@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:elevation="60dp"
         app:iconPadding="4dp"
-        style="@style/login"
+        style="@style/login.btn"
         app:elevation="4dp"
         />
 

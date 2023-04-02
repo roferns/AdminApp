@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -42,6 +43,7 @@ public class EditEvent extends AppCompatActivity {
     String points;
     String key ="";
 
+    boolean isAllFieldsChecked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,9 @@ public class EditEvent extends AppCompatActivity {
         initDatePicker();
         updateDate.setText(getTodaysDate());
 
+        updateDate.setInputType(InputType.TYPE_NULL);
+        updateTime.setInputType(InputType.TYPE_NULL);
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             updateName.setText(bundle.getString("name"));
@@ -78,9 +83,15 @@ public class EditEvent extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateData();
-                Intent intent = new Intent(EditEvent.this, ViewEvents.class);
-                startActivity(intent);
+
+                isAllFieldsChecked = CheckAllFields();
+
+                if (isAllFieldsChecked) {
+                    updateData();
+                    Intent intent = new Intent(EditEvent.this, ViewEvents.class);
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -203,6 +214,46 @@ public class EditEvent extends AppCompatActivity {
         }, 15, 30, false);
 
         timePickerDialog.show();
+    }
+
+    private boolean CheckAllFields() {
+        if (updateName.length() == 0) {
+            updateName.setError("This field is required");
+            return false;
+        }
+
+        if (updateDept.length() == 0) {
+            updateDept.setError("This field is required");
+            return false;
+        }
+
+        if (updateFaculty.length() == 0) {
+            updateFaculty.setError("Email is required");
+            return false;
+        }
+
+        if (updateVenue.length() == 0) {
+            updateVenue.setError("Email is required");
+            return false;
+        }
+
+        if (updateDate.length() == 0) {
+            updateDate.setError("Email is required");
+            return false;
+        }
+
+        if (updateTime.length() == 0) {
+            updateTime.setError("Email is required");
+            return false;
+        }
+
+        if (updatePoints.length() == 0) {
+            updatePoints.setError("Email is required");
+            return false;
+        }
+
+
+        return true;
     }
 
 }

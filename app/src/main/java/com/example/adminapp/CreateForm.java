@@ -3,12 +3,13 @@ package com.example.adminapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
-import android.app.AlertDialog;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,8 +25,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.invoke.WrongMethodTypeException;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CreateForm extends BaseActivity {
 
@@ -36,6 +40,9 @@ public class CreateForm extends BaseActivity {
     Button submit, reset;
     DatabaseReference myRef;
     FirebaseDatabase database;
+
+    boolean isAllFieldsChecked = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,29 +57,25 @@ public class CreateForm extends BaseActivity {
         submit = findViewById(R.id.submit_btn);
         reset = findViewById(R.id.reset_btn);
         time = findViewById(R.id.timePickerButton);
+        time.setInputType(InputType.TYPE_NULL);
 
 
         //date picker
         initDatePicker();
         date_ = findViewById(R.id.datePickerButton);
         date_.setText(getTodaysDate());
+        date_.setInputType(InputType.TYPE_NULL);
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertData();
 
-//                event.setEventName(eventName.getText().toString().trim());
-//                event.setDepartment(department.getText().toString().trim());
-//                event.setFaculty(faculty.getText().toString().trim());
-//                event.setVenue(venue.getText().toString().trim());
-//                event.setDate(date_.getText().toString().trim());
-//                event.setTime(time.getText().toString().trim());
-//                event.setPoints(pointsAlloted.getText().toString().trim());
-//                myRef.child(String.valueOf(maxid+1)).setValue("events");
-//
-//                Toast.makeText(CreateForm.this, "Data inserted successfully", Toast.LENGTH_SHORT).show();
+                isAllFieldsChecked = CheckAllFields();
+
+                if (isAllFieldsChecked) {
+                    insertData();
+                }
             }
         });
 
@@ -191,5 +194,47 @@ public class CreateForm extends BaseActivity {
 
         timePickerDialog.show();
     }
+
+    private boolean CheckAllFields() {
+        if (eventName.length() == 0) {
+            eventName.setError("This field is required");
+            return false;
+        }
+
+        if (department.length() == 0) {
+            department.setError("This field is required");
+            return false;
+        }
+
+        if (faculty.length() == 0) {
+            faculty.setError("Email is required");
+            return false;
+        }
+
+        if (venue.length() == 0) {
+            venue.setError("Email is required");
+            return false;
+        }
+
+        if (date_.length() == 0) {
+            date_.setError("Email is required");
+            return false;
+        }
+
+        if (time.length() == 0) {
+            time.setError("Email is required");
+            return false;
+        }
+
+        if (pointsAlloted.length() == 0) {
+            pointsAlloted.setError("Email is required");
+            return false;
+        }
+
+        return true;
+    }
+
+
+
 
 }
