@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".EditEvent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/cardbg"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView14"
+            style="@style/info_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Update Event"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editEvent_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="32dp"
+            android:hint="Event Name"
+            app:layout_constraintEnd_toEndOf="@+id/editDept_tv"
+            app:layout_constraintTop_toBottomOf="@+id/textView14">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editEventName_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editDept_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Department"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:layout_constraintEnd_toEndOf="@+id/editFaculty_tv"
+            app:layout_constraintTop_toBottomOf="@+id/editEvent_tv">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editDept_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editFaculty_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Faculty Incharge"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@+id/editDept_tv">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editFaculty_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editVenue_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Venue"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@+id/editFaculty_tv">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editVenue_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editDate_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@+id/editVenue_tv">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/datePickerButtonUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                style="@style/drawable"
+                android:drawableEnd="@drawable/baseline_calendar_today_24"
+                android:inputType="none|date"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTime_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Time"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@+id/editDate_tv"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/timePickerButtonUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:drawableEnd="@drawable/baseline_access_time_24"
+                android:text="00:00"
+                style="@style/drawable"
+                android:inputType="none|time"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editPoints_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ECC Points"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            app:layout_constraintTop_toBottomOf="@+id/editTime_tv">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editPoints_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:inputType="number"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="bottom">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/update_btn"
+                style="@style/button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="0.5"
+                android:textAllCaps="true"
+                android:text="SUBMIT"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reset_btn2"
+                style="@style/button.danger"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="0.5"
+                android:textAllCaps="true"
+                android:text="RESET"
+                />
+
+        </LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

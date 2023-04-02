@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="?attr/colorOnSurface"
-        android:popupBackground="?attr/colorSecondaryVariant"
         android:popupElevation="2dp"
         android:spinnerMode="dropdown" />
 
