@@ -3,6 +3,7 @@ package com.example.adminapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ import java.util.HashMap;
 public class ResultPage extends BaseActivity {
 
     TextView searchResultDisplay, nameTV, emailTV, classTV;
+    String uid, classTitle;
 
     HashMap dataSet;
     GoogleSignInOptions gso;
@@ -38,7 +40,6 @@ public class ResultPage extends BaseActivity {
     Button btnForRoleSwitch;
 
     int volunteerFlag=0;    //if the search result is a volunteer then 1, else 0
-    String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +75,23 @@ public class ResultPage extends BaseActivity {
 
                     nameTV.setText((String) searchResult.get("name"));
                     emailTV.setText((String) searchResult.get("email"));
-                    //classTV.setText((String) searchResult.get("class"));
+                    classTV.setText(""+searchResult.get("class"));
+
+                    database.getReference("class").child(""+searchResult.get("class")).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if (!task.isSuccessful()) {
+//                                    Log.e("firebase", "Error getting data", task.getException());
+                            }
+                            else {
+                                classTV.setText(""+task.getResult().getValue());
+                                classTitle =""+task.getResult().getValue();
+
+//                                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                            }
+                        }
+                    });
+
 
                     String searchMsg = "";
                     if (Integer.parseInt(searchResult.get("volunteer")+"")==1){
@@ -93,6 +110,8 @@ public class ResultPage extends BaseActivity {
                     btnForRoleSwitch.setVisibility(View.GONE);
                 }
 //                end checking if user exists  //////////////////////////////////////////
+
+
             }
 
             @Override
@@ -106,6 +125,7 @@ public class ResultPage extends BaseActivity {
         btnForRoleSwitch.setOnClickListener(view -> {
             updateDB(uid,volunteerFlag);
         });
+
     }
     //        firebase code for writing starts here//////////////////////////////////////////////////////
     private void updateDB(String uid, int flag) { //dont actually need to take the second param, but chuck
@@ -129,6 +149,7 @@ public class ResultPage extends BaseActivity {
                         myRef.child(uid).child("volunteer").setValue(1);
                         volunteerFlag=1;
                     }
+
                 }
             }
         });
