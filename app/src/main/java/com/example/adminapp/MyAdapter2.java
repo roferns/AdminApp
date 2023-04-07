@@ -58,11 +58,6 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyViewHolder2>{
             myRef = database.getReference("events");
             myRef.child(events.get(position).getId()).removeValue();
         });
-//        holder.editBtn.setOnClickListener(view -> {
-//            Log.d("indexx", events.get(position).getId()+"");
-//            database = FirebaseDatabase.getInstance("https://eccloginmoduletest-default-rtdb.asia-southeast1.firebasedatabase.app/");
-//            myRef = database.getReference("events").child(events.get(position).getId());
-//        });
 
         int pos = holder.getBindingAdapterPosition();
 
@@ -96,9 +91,6 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyViewHolder2>{
             }
         });
     }
-
-
-
 
     @Override
     public int getItemCount() {

@@ -71,7 +71,7 @@ public class Home extends BaseActivity {
                     HashMap switchMap = (HashMap) value.get(s);
                     if (switchMap.containsValue(account.getEmail())) {
                         if ((Long) switchMap.get("admin") == 1) {
-                            accountTV.setText("You are logged in using " + switchMap.get("email"));
+                            accountTV.setText("You are logged in using \n" + switchMap.get("email"));
                             flag = 1;
                         }
                     }
