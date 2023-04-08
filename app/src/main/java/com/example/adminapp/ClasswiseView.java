@@ -48,7 +48,7 @@ public class ClasswiseView extends AppCompatActivity implements AdapterView.OnIt
 //spinner start
         Spinner dropdown = findViewById(R.id.spinner1);
         //create a list of items for the spinner.
-        String[] items1 = new String[]{"TYIT", "BMM", "TYBMS"};
+        String[] items1 = new String[]{"TYIT", "BMM", "BMS"};
         //create an adapter to describe how the items are displayed, adapters are used in several places in android.
         //There are multiple variations of this, but this is the basic variant.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items1);
