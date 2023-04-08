@@ -147,8 +147,6 @@ public class EditEvent extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void unused) {
                         Toast.makeText(EditEvent.this, "Data updated successfully", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(EditEvent.this, ViewEvents.class);
-                        startActivity(i);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
