@@ -207,27 +207,27 @@ public class CreateForm extends BaseActivity {
         }
 
         if (faculty.length() == 0) {
-            faculty.setError("Email is required");
+            faculty.setError("This field is required");
             return false;
         }
 
         if (venue.length() == 0) {
-            venue.setError("Email is required");
+            venue.setError("This field is required");
             return false;
         }
 
         if (date_.length() == 0) {
-            date_.setError("Email is required");
+            date_.setError("This field is required");
             return false;
         }
 
         if (time.length() == 0) {
-            time.setError("Email is required");
+            time.setError("This field is required");
             return false;
         }
 
         if (pointsAlloted.length() == 0) {
-            pointsAlloted.setError("Email is required");
+            pointsAlloted.setError("This field is required");
             return false;
         }
 

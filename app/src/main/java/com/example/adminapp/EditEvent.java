@@ -230,27 +230,27 @@ public class EditEvent extends AppCompatActivity {
         }
 
         if (updateFaculty.length() == 0) {
-            updateFaculty.setError("Email is required");
+            updateFaculty.setError("This field is required");
             return false;
         }
 
         if (updateVenue.length() == 0) {
-            updateVenue.setError("Email is required");
+            updateVenue.setError("This field is required");
             return false;
         }
 
         if (updateDate.length() == 0) {
-            updateDate.setError("Email is required");
+            updateDate.setError("This field is required");
             return false;
         }
 
         if (updateTime.length() == 0) {
-            updateTime.setError("Email is required");
+            updateTime.setError("This field is required");
             return false;
         }
 
         if (updatePoints.length() == 0) {
-            updatePoints.setError("Email is required");
+            updatePoints.setError("This field is required");
             return false;
         }
 
